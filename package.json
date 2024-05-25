@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "nodemon": "^3.1.1"
+  },
+  "name": "express",
+  "version": "1.0.0",
+  "main": "1-basic-server.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
