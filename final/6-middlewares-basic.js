@@ -1,23 +1,31 @@
-const express = require('express')
+const express = require("express");
+const logger = require("./logger.js");
+const auth = require("./authorize.js");
+const morgan = require("morgan");
 
-const app = express()
+const app = express();
+app.use(morgan('tiny'));
 
-const logger = (req,res,next) =>{
-    const method = req.method
-    const url = req.url
-    const time = new Date().getFullYear()
-    console.log(method,url,time)
-    next()
-}
+app.get("/", (req, res) => {
+  res.send("Home Page");
+});
 
-app.get('/',logger,(req,res)=> {
-   res.send('Home Page')
-})
+app.get("/about/", (req, res) => {
+  res.send("About Page");
+});
 
-app.get('/about/',logger,(req,res) => {
-    res.send('About Page')
-})
+app.get("/api/", [logger, auth], (req, res) => {
+  res.send("APIs");
+});
 
-app.listen(5000,() => {
-    console.log('Server listening on port 5000');
-})
+app.get("/contact/", (req, res) => {
+  res.send("About Page");
+});
+
+app.get("/product/", (req, res) => {
+  res.send("Products");
+});
+
+app.listen(5000, () => {
+  console.log("Server listening on port 5000");
+});
